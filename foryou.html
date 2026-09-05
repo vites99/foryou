@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>For You, My Everything — A Love Letter in Bloom</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Cormorant Garamond, Playfair Display, Plus Jakarta Sans & Alex Brush -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            display: ['"Playfair Display"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            script: ['"Alex Brush"', 'cursive'],
+          },
+          colors: {
+            blush: {
+              50: '#fff5f7',
+              100: '#ffe8ed',
+              200: '#ffd6e1',
+              300: '#ffb3c6',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+              950: '#4c0519',
+            },
+            roseGold: '#f4a5ae',
+            pastelPink: '#fecdd3',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Transisi ultra-smooth & styling dasar */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      background: radial-gradient(circle at 50% 10%, #fff0f5 0%, #ffe4eb 35%, #fcddec 70%, #f9cde2 100%);
+      color: #701a35;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      min-height: 100vh;
+    }
+
+    /* Efek teks glow mawar */
+    .text-glow-pink {
+      text-shadow: 0 0 20px rgba(244, 63, 94, 0.35), 0 0 40px rgba(251, 113, 133, 0.2);
+    }
+
+    /* Kaca lembut Frosted Glassmorphism */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 15px 35px -8px rgba(225, 29, 72, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+    }
+
+    .glass-card-hover {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card-hover:hover {
+      transform: translateY(-5px) scale(1.015);
+      background: rgba(255, 255, 255, 0.88);
+      border-color: rgba(251, 113, 133, 0.45);
+      box-shadow: 0 22px 45px -10px rgba(244, 63, 94, 0.22), inset 0 1px 3px rgba(255, 255, 255, 1);
+    }
+
+    /* Gaya Bingkai Polaroid Estetik */
+    .polaroid-frame {
+      background: #ffffff;
+      padding: 9px 9px 24px 9px;
+      border-radius: 16px;
+      box-shadow: 0 12px 28px -6px rgba(136, 19, 55, 0.16), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(254, 205, 211, 0.7);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+      position: relative;
+    }
+    @media (min-width: 640px) {
+      .polaroid-frame {
+        padding: 12px 12px 30px 12px;
+        border-radius: 20px;
+      }
+    }
+
+    .polaroid-frame:hover {
+      transform: translateY(-8px) rotate(0deg) scale(1.03) !important;
+      box-shadow: 0 24px 45px -10px rgba(225, 29, 72, 0.28);
+      z-index: 25;
+    }
+
+    /* Pita Perekat Washi Tape Manis */
+    .washi-tape {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 58px;
+      height: 18px;
+      background: rgba(255, 214, 225, 0.85);
+      border-left: 2px dashed rgba(244, 63, 94, 0.35);
+      border-right: 2px dashed rgba(244, 63, 94, 0.35);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+      backdrop-filter: blur(4px);
+      z-index: 10;
+    }
+
+    /* Animasi lembut */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
+    }
+
+    @keyframes pulseHeartGlow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 0.95; transform: scale(1.1); }
+    }
+
+    @keyframes flowerSway {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(4deg); }
+    }
+
+    .animate-float {
+      animation: gentleFloat 4.2s ease-in-out infinite;
+    }
+
+    .animate-pulse-glow {
+      animation: pulseHeartGlow 3s ease-in-out infinite;
+    }
+
+    .sway-flower {
+      transform-origin: bottom center;
+      animation: flowerSway 3.8s ease-in-out infinite;
+    }
+
+    /* Partikel klik layar */
+    .tap-heart-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      animation: floatUpAndFade 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes floatUpAndFade {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+      }
+      50% {
+        opacity: 0.95;
+        transform: translate(calc(-50% + var(--tx)), calc(-50% - 50px)) scale(1.25) rotate(var(--rot));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--tx)), calc(-50% - 100px)) scale(0.8) rotate(var(--rot));
+      }
+    }
+
+    /* Scrollbar pink minimalis */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #ffe8ed;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #fda4af;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #fb7185;
+    }
+
+    input[type=range] {
+      accent-color: #f43f5e;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen">
+
+  <!-- ================= CANVAS KELOPAK SAKURA, MAWAR & KILAU ================= -->
+  <canvas id="petalCanvas" class="fixed inset-0 pointer-events-none z-10 w-full h-full"></canvas>
+
+  <!-- ================= AMBIENT BACKGROUND GLOW EFEK AWAN PINK ================= -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-32 -left-20 w-[85vw] sm:w-[50vw] h-[55vw] rounded-full bg-gradient-to-tr from-pink-300/35 via-rose-200/40 to-transparent blur-3xl"></div>
+    <div class="absolute top-1/3 -right-24 w-[75vw] sm:w-[45vw] h-[50vw] rounded-full bg-gradient-to-bl from-blush-300/30 via-pink-200/35 to-transparent blur-3xl"></div>
+    <div class="absolute -bottom-24 left-1/3 w-[80vw] sm:w-[55vw] h-[50vw] rounded-full bg-gradient-to-t from-pink-300/30 via-rose-200/25 to-transparent blur-3xl"></div>
+  </div>
+
+  <!-- ================= MODAL / LAYAR PEMBUKA: KOTAK KADO PINK AESTHETIC ================= -->
+  <div id="giftScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-b from-[#fff2f6] via-[#ffe3ec] to-[#ffd0e0] transition-all duration-1000 p-4">
+    
+    <!-- Tombol Buka QR Code di Sudut Atas -->
+    <button onclick="toggleQRModal(true)" class="absolute top-5 right-5 sm:top-6 sm:right-6 flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-rose-700 bg-white/80 hover:bg-white border border-pink-200/90 shadow-md backdrop-blur-md transition-all active:scale-95 z-30">
+      <svg class="w-3.5 h-3.5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
+      </svg>
+      <span>QR Surprise 💌</span>
+    </button>
+
+    <!-- Kotak Kado yang Bisa Di-klik -->
+    <div id="giftBoxContainer" onclick="openGift()" class="relative cursor-pointer group flex flex-col items-center select-none">
+      
+      <!-- Lingkaran Cahaya Lembut Berpendar Merah Muda -->
+      <div class="absolute -inset-10 bg-gradient-to-r from-rose-300/40 via-pink-400/40 to-rose-300/40 rounded-full blur-3xl group-hover:scale-115 transition-all duration-700 animate-pulse-glow"></div>
+
+      <!-- Partikel Bunga Saat Dibuka -->
+      <div id="flowerBurstZone" class="absolute inset-0 pointer-events-none flex items-center justify-center"></div>
+
+      <!-- Ilustrasi Kotak Kado Pink Pastel Cantik -->
+      <div class="relative w-36 h-36 sm:w-48 sm:h-48 transition-transform duration-500 group-hover:scale-105 animate-float">
+        
+        <!-- Pita Atas / Simpul Busur Cantik (Ribbon Bow 🎀) -->
+        <div class="absolute -top-7 left-1/2 -translate-x-1/2 w-20 h-12 flex justify-center items-center z-20">
+          <div class="w-7 sm:w-8 h-7 sm:h-8 bg-gradient-to-br from-amber-200 via-yellow-300 to-amber-400 rounded-full border-2 border-amber-300 rotate-45 -mr-3 shadow-md"></div>
+          <div class="w-7 sm:w-8 h-7 sm:h-8 bg-gradient-to-bl from-amber-200 via-yellow-300 to-amber-400 rounded-full border-2 border-amber-300 -rotate-45 shadow-md"></div>
+          <div class="absolute top-2 w-5 h-5 bg-gradient-to-b from-yellow-300 to-amber-400 rounded-full border border-amber-200 z-10 shadow-sm flex items-center justify-center">
+            <span class="text-[9px] text-amber-800">✨</span>
+          </div>
+        </div>
+
+        <!-- Tutup Kado (Lid) -->
+        <div id="giftLid" class="absolute top-0 left-0 w-full h-10 sm:h-11 bg-gradient-to-r from-rose-400 via-pink-400 to-rose-400 rounded-t-2xl shadow-lg border-b-2 border-rose-400/50 z-10 transition-transform duration-700">
+          <!-- Pita Tutup Vertikal Emas -->
+          <div class="absolute left-1/2 -translate-x-1/2 w-7 sm:w-8 h-full bg-gradient-to-b from-amber-200 via-yellow-300 to-amber-400 border-x border-amber-300/70 shadow-sm"></div>
+        </div>
+
+        <!-- Badan Kotak Kado -->
+        <div class="absolute top-8 sm:top-9 left-2 right-2 bottom-0 bg-gradient-to-b from-rose-300 via-pink-400 to-rose-400 rounded-b-3xl shadow-2xl border-2 border-pink-200/60 overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-tr from-rose-500/20 via-transparent to-white/40"></div>
+          <div class="absolute left-1/2 -translate-x-1/2 w-7 sm:w-8 h-full bg-gradient-to-b from-amber-200 via-yellow-300 to-amber-400 shadow-md border-x border-amber-300/70"></div>
+          <div class="absolute top-1/2 -translate-y-1/2 w-full h-7 sm:h-8 bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-400 shadow-md border-y border-amber-300/70"></div>
+        </div>
+
+        <!-- Ornamen Stiker Manis -->
+        <div class="absolute -bottom-2 -right-3 sm:-right-4 text-2xl sm:text-3xl filter drop-shadow">🌸</div>
+        <div class="absolute -bottom-1 -left-3 sm:-left-4 text-2xl sm:text-3xl filter drop-shadow">🎀</div>
+        <div class="absolute -top-1 -right-3 text-lg sm:text-xl filter drop-shadow">💖</div>
+      </div>
+
+      <!-- Teks Petunjuk Buka Kado -->
+      <div class="mt-8 sm:mt-9 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/85 border border-pink-200/90 shadow-sm mb-2">
+          <span class="text-rose-500 text-xs">✨</span>
+          <p class="font-serif italic text-sm sm:text-base text-rose-800 tracking-[0.2em] uppercase font-medium">
+            tap to open
+          </p>
+          <span class="text-rose-500 text-xs">✨</span>
+        </div>
+        <p class="text-xs text-rose-600/80 font-normal tracking-wide">sentuh kado untuk membuka surat cintamu 🌷</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= KONTEN UTAMA WEBSITE (A LOVE LETTER IN BLOOM) ================= -->
+  <main id="mainContent" class="relative z-20 opacity-0 pointer-events-none transition-opacity duration-1000 flex flex-col items-center px-4 sm:px-6 pb-40 pt-10 max-w-3xl mx-auto">
+
+    <!-- HERO SECTION -->
+    <header class="min-h-[78vh] flex flex-col items-center justify-center text-center py-12 sm:py-16">
+      
+      <!-- Subtitle Atas -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 border border-pink-200 shadow-sm mb-5">
+        <span class="text-xs">🎀</span>
+        <span class="font-serif italic text-xs sm:text-sm tracking-[0.25em] text-rose-700 uppercase font-semibold">
+          a love letter in bloom
+        </span>
+        <span class="text-xs">🌸</span>
+      </div>
+
+      <!-- Judul Besar Romantis -->
+      <h1 class="font-serif italic text-4xl sm:text-6xl md:text-7xl font-semibold text-transparent bg-clip-text bg-gradient-to-b from-rose-800 via-rose-700 to-pink-600 text-glow-pink leading-tight my-2">
+        For You,<br class="sm:hidden" /> My Everything
+      </h1>
+
+      <!-- Subtitle Deskripsi Puitis -->
+      <p class="text-xs sm:text-sm text-rose-800/80 max-w-md font-normal tracking-wide mt-2 mb-8 px-4 leading-relaxed">
+        Every petal holds a gentle whisper of how deeply you are loved, today and for all the tomorrows to come.
+      </p>
+
+      <!-- Ikon Bunga Pusat Berputar Halus -->
+      <div class="relative my-3 group">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/85 flex items-center justify-center border-2 border-pink-300 shadow-[0_0_35px_rgba(251,113,133,0.35)] backdrop-blur-md transition-transform duration-500 group-hover:scale-110">
+          <span class="text-3xl sm:text-4xl animate-spin" style="animation-duration: 22s;">🌸</span>
+        </div>
+        <div class="absolute -top-1 -right-1 text-base sm:text-lg">✨</div>
+        <div class="absolute -bottom-1 -left-1 text-sm sm:text-base">💕</div>
+      </div>
+
+      <!-- Indikator Scroll ke Bawah -->
+      <div class="mt-10 sm:mt-12 flex flex-col items-center gap-1.5 text-rose-600/70">
+        <span class="text-[10px] tracking-[0.3em] uppercase font-semibold">SCROLL TO DISCOVER</span>
+        <span class="text-sm animate-bounce text-rose-500">↓</span>
+      </div>
+    </header>
+
+
+    <!-- SECTION 1: SURAT DARI HATI (LETTER CARD) -->
+    <section class="w-full my-10 sm:my-12">
+      <div class="glass-card rounded-3xl p-6 sm:p-10 relative overflow-hidden text-center border-pink-200/90 shadow-xl">
+        
+        <!-- Ornamen Cahaya Pojok -->
+        <div class="absolute -top-8 -right-8 w-36 h-36 bg-gradient-to-br from-pink-300/30 to-rose-400/20 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-8 -left-8 w-36 h-36 bg-gradient-to-tr from-pink-300/30 to-rose-300/20 rounded-full blur-2xl pointer-events-none"></div>
+
+        <!-- Ikon Bunga & Pita -->
+        <div class="flex justify-center items-center gap-2 mb-3 text-xl">
+          <span>🌸</span>
+          <span class="text-2xl">🎀</span>
+          <span>🌸</span>
+        </div>
+
+        <p class="font-serif italic text-xs tracking-[0.25em] text-rose-600 uppercase font-semibold mb-2">
+          from my heart
+        </p>
+
+        <h2 class="font-serif text-2xl sm:text-4xl text-rose-900 font-semibold mb-6 tracking-wide text-glow-pink">
+          You are my wildest dream<br />come true.
+        </h2>
+
+        <div class="space-y-4 text-xs sm:text-sm text-rose-900/85 leading-relaxed font-normal text-left sm:text-center px-1 sm:px-6">
+          <p>
+            In a world full of ordinary moments, you are the extraordinary one. The warmth in your laugh, the softness of your voice, the sweet way you care — you fill every single corner of my soul with a peace I never knew existed.
+          </p>
+          <p>
+            These flowers are merely a reflection. No words ever could be enough. But they carry every tender thought, every quiet prayer, and every unspoken feeling I hold for you, pressed between their petals like love notes meant only for you.
+          </p>
+        </div>
+
+        <!-- Tanda Tangan Romantis -->
+        <div class="mt-8 pt-5 border-t border-rose-200/80 flex justify-center items-center gap-3">
+          <span class="font-script text-3xl sm:text-4xl text-rose-700">— Always yours</span>
+          <span class="text-xl">🌹</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 2: WHY I LOVE YOU (6 REASONS GRID) -->
+    <section class="w-full my-10 sm:my-12">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/70 border border-pink-200 text-rose-600 text-xs font-serif italic tracking-[0.2em] uppercase mb-2">
+          <span>✨</span> a thousand reasons why <span>✨</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl text-rose-900 font-semibold tracking-wide text-glow-pink">
+          Why I Love You
+        </h2>
+      </div>
+
+      <!-- 6 Kartu Alasan Cinta -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 w-full">
+        
+        <!-- Kartu 1: Your Smile -->
+        <div class="glass-card glass-card-hover rounded-2xl p-5 sm:p-6 text-center border-pink-200/80">
+          <div class="text-3xl mb-2.5 filter drop-shadow-sm">🌷</div>
+          <h3 class="font-serif text-lg sm:text-xl text-rose-900 font-semibold mb-1">Your Smile</h3>
+          <p class="text-xs text-rose-800/80 font-normal leading-relaxed">
+            The sweetest sunrise that lights up my whole world and gently melts away every worry.
+          </p>
+        </div>
+
+        <!-- Kartu 2: Your Soul -->
+        <div class="glass-card glass-card-hover rounded-2xl p-5 sm:p-6 text-center border-pink-200/80">
+          <div class="text-3xl mb-2.5 filter drop-shadow-sm">🌸</div>
+          <h3 class="font-serif text-lg sm:text-xl text-rose-900 font-semibold mb-1">Your Soul</h3>
+          <p class="text-xs text-rose-800/80 font-normal leading-relaxed">
+            Pure, gentle, and more radiant than any spring blossom that ever danced in the sunlight.
+          </p>
+        </div>
+
+        <!-- Kartu 3: Your Kindness -->
+        <div class="glass-card glass-card-hover rounded-2xl p-5 sm:p-6 text-center border-pink-200/80">
+          <div class="text-3xl mb-2.5 filter drop-shadow-sm">🌺</div>
+          <h3 class="font-serif text-lg sm:text-xl text-rose-900 font-semibold mb-1">Your Kindness</h3>
+          <p class="text-xs text-rose-800/80 font-normal leading-relaxed">
+            The way your heart loves and cherishes everything makes me fall for you over and over again.
+          </p>
+        </div>
+
+        <!-- Kartu 4: Your Laughter -->
+        <div class="glass-card glass-card-hover rounded-2xl p-5 sm:p-6 text-center border-pink-200/80">
+          <div class="text-3xl mb-2.5 filter drop-shadow-sm">✨</div>
+          <h3 class="font-serif text-lg sm:text-xl text-rose-900 font-semibold mb-1">Your Laughter</h3>
+          <p class="text-xs text-rose-800/80 font-normal leading-relaxed">
+            The prettiest melody ever composed. It instantly makes my day a thousand times brighter.
+          </p>
+        </div>
+
+        <!-- Kartu 5: Your Strength -->
+        <div class="glass-card glass-card-hover rounded-2xl p-5 sm:p-6 text-center border-pink-200/80">
+          <div class="text-3xl mb-2.5 filter drop-shadow-sm">🎀</div>
+          <h3 class="font-serif text-lg sm:text-xl text-rose-900 font-semibold mb-1">Your Grace</h3>
+          <p class="text-xs text-rose-800/80 font-normal leading-relaxed">
+            You carry yourself with such gentle poise, elegance, and beauty. I admire you so deeply.
+          </p>
+        </div>
+
+        <!-- Kartu 6: Simply You -->
+        <div class="glass-card glass-card-hover rounded-2xl p-5 sm:p-6 text-center border-pink-200/80">
+          <div class="text-3xl mb-2.5 filter drop-shadow-sm">💖</div>
+          <h3 class="font-serif text-lg sm:text-xl text-rose-900 font-semibold mb-1">Simply You</h3>
+          <p class="text-xs text-rose-800/80 font-normal leading-relaxed">
+            Just you being exactly who you are — you are my greatest blessing and favorite person forever.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 3: TAMAN BUNGA KITA (A GARDEN GROWN JUST FOR YOU) -->
+    <section class="w-full my-12">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/70 border border-pink-200 text-rose-600 text-xs font-serif italic tracking-[0.2em] uppercase mb-2">
+          <span>💐</span> our secret sanctuary <span>💐</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl text-rose-900 font-semibold tracking-wide text-glow-pink">
+          A Garden Grown<br />
+          <span class="italic text-rose-600 font-medium">Just For You</span>
+        </h2>
+      </div>
+
+      <!-- Deretan Tangkai Bunga Interaktif -->
+      <div class="glass-card rounded-3xl p-5 sm:p-9 flex flex-col items-center border-pink-200/90 shadow-xl">
+        
+        <div class="flex items-end justify-center gap-2 sm:gap-6 py-5 w-full overflow-x-auto px-2">
+          
+          <!-- Bunga 1: Mawar Merah -->
+          <div onclick="showFlowerMeaning('Red Rose', 'Cinta sejati yang abadi, keanggunan tanpa batas, dan detak jantung yang selalu memilihmu.')" class="cursor-pointer group flex flex-col items-center px-1">
+            <div class="text-3xl sm:text-4xl group-hover:scale-125 transition-transform duration-300 sway-flower filter drop-shadow">🌹</div>
+            <div class="w-1 sm:w-1.5 h-16 sm:h-20 bg-gradient-to-b from-emerald-500 to-emerald-700 rounded-full mt-1 relative">
+              <div class="absolute top-4 left-0.5 w-2 h-1.5 bg-emerald-400 rounded-full rotate-45"></div>
+            </div>
+          </div>
+
+          <!-- Bunga 2: Sakura Pink -->
+          <div onclick="showFlowerMeaning('Cherry Blossom', 'Kelembutan hatimu, kecantikan yang manis alami, dan awal kisah cinta terindahku.')" class="cursor-pointer group flex flex-col items-center px-1">
+            <div class="text-3xl sm:text-4xl group-hover:scale-125 transition-transform duration-300 sway-flower filter drop-shadow" style="animation-delay: 0.4s;">🌸</div>
+            <div class="w-1 sm:w-1.5 h-20 sm:h-24 bg-gradient-to-b from-emerald-500 to-emerald-700 rounded-full mt-1 relative">
+              <div class="absolute top-6 -left-1.5 w-2 h-1.5 bg-emerald-400 rounded-full -rotate-45"></div>
+            </div>
+          </div>
+
+          <!-- Bunga 3: Hibiscus -->
+          <div onclick="showFlowerMeaning('Pink Hibiscus', 'Pesona yang memikat, ketulusan rasa sayang, dan kenyamanan saat bersamamu.')" class="cursor-pointer group flex flex-col items-center px-1">
+            <div class="text-3xl sm:text-4xl group-hover:scale-125 transition-transform duration-300 sway-flower filter drop-shadow" style="animation-delay: 0.8s;">🌺</div>
+            <div class="w-1 sm:w-1.5 h-14 sm:h-18 bg-gradient-to-b from-emerald-500 to-emerald-700 rounded-full mt-1 relative">
+              <div class="absolute top-3 left-0.5 w-2 h-1.5 bg-emerald-400 rounded-full rotate-45"></div>
+            </div>
+          </div>
+
+          <!-- Bunga 4: Daisy -->
+          <div onclick="showFlowerMeaning('Sweet Daisy', 'Ketulusan yang polos, tawa ceria yang menular, dan kebahagiaan sederhana bersamamu.')" class="cursor-pointer group flex flex-col items-center px-1">
+            <div class="text-3xl sm:text-4xl group-hover:scale-125 transition-transform duration-300 sway-flower filter drop-shadow" style="animation-delay: 1.2s;">🌼</div>
+            <div class="w-1 sm:w-1.5 h-18 sm:h-22 bg-gradient-to-b from-emerald-500 to-emerald-700 rounded-full mt-1 relative">
+              <div class="absolute top-5 -left-1.5 w-2 h-1.5 bg-emerald-400 rounded-full -rotate-45"></div>
+            </div>
+          </div>
+
+          <!-- Bunga 5: Sunflower -->
+          <div onclick="showFlowerMeaning('Sunflower', 'Kesetiaanku padamu, kehangatan pelukanmu, dan selalu memandangmu sebagai matahariku.')" class="cursor-pointer group flex flex-col items-center px-1">
+            <div class="text-3xl sm:text-4xl group-hover:scale-125 transition-transform duration-300 sway-flower filter drop-shadow" style="animation-delay: 1.6s;">🌻</div>
+            <div class="w-1 sm:w-1.5 h-22 sm:h-28 bg-gradient-to-b from-emerald-500 to-emerald-700 rounded-full mt-1 relative">
+              <div class="absolute top-7 left-0.5 w-2.5 h-2 bg-emerald-400 rounded-full rotate-45"></div>
+            </div>
+          </div>
+
+          <!-- Bunga 6: Tulip Pink -->
+          <div onclick="showFlowerMeaning('Pink Tulip', 'Kisah cinta yang sempurna, janji suci untuk selalu menjagamu, dan kasih sayang tanpa akhir.')" class="cursor-pointer group flex flex-col items-center px-1">
+            <div class="text-3xl sm:text-4xl group-hover:scale-125 transition-transform duration-300 sway-flower filter drop-shadow" style="animation-delay: 2s;">🌷</div>
+            <div class="w-1 sm:w-1.5 h-16 sm:h-20 bg-gradient-to-b from-emerald-500 to-emerald-700 rounded-full mt-1 relative">
+              <div class="absolute top-4 -left-1.5 w-2 h-1.5 bg-emerald-400 rounded-full -rotate-45"></div>
+            </div>
+          </div>
+
+          <!-- Bunga 7: Bouquet Romantis -->
+          <div onclick="showFlowerMeaning('Forever Bouquet', 'Kumpulan semua rasa cinta, rasa syukur, dan janji untuk terus membahagiakanmu selamanya.')" class="cursor-pointer group flex flex-col items-center px-1">
+            <div class="text-3xl sm:text-4xl group-hover:scale-125 transition-transform duration-300 sway-flower filter drop-shadow" style="animation-delay: 2.4s;">💐</div>
+            <div class="w-1 sm:w-1.5 h-14 sm:h-16 bg-gradient-to-b from-emerald-500 to-emerald-700 rounded-full mt-1 relative">
+              <div class="absolute top-3 left-0.5 w-2 h-1.5 bg-emerald-400 rounded-full rotate-45"></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="font-serif italic text-xs tracking-wider text-rose-700 mt-3 text-center font-medium">
+          ✦ sentuh bunga untuk membaca rahasia maknanya ✦
+        </p>
+
+        <!-- Kotak Makna Bunga -->
+        <div id="flowerMeaningBox" class="mt-4 p-4 rounded-2xl bg-white/95 border border-pink-300 max-w-md w-full text-center transition-all duration-300 shadow-md hidden">
+          <p id="flowerName" class="font-serif text-rose-900 text-base font-semibold"></p>
+          <p id="flowerDesc" class="text-xs text-rose-800/85 font-normal mt-1 leading-relaxed"></p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 4: FOTO ESTETIK POLAROID SCRAPBOOK (YOUR BEAUTIFUL PICTURES) -->
+    <section class="w-full my-12">
+      <div class="text-center mb-9">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/70 border border-pink-200 text-rose-600 text-xs font-serif italic tracking-[0.2em] uppercase mb-2">
+          <span>📸</span> our treasured memories <span>📸</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl text-rose-900 font-semibold tracking-wide text-glow-pink">
+          Your Beautiful<br />
+          <span class="italic text-rose-600 font-medium">Pictures</span>
+        </h2>
+        <p class="text-xs text-rose-700/70 font-light mt-1 tracking-wide">
+          (ketuk foto untuk melihat pesan spesial)
+        </p>
+      </div>
+
+      <!-- Grid Foto Polaroid Scrapbook 2x2 Ultra-Responsive -->
+      <div class="grid grid-cols-2 gap-3.5 sm:gap-6 w-full max-w-lg sm:max-w-xl mx-auto px-1">
+        
+        <!-- FOTO 1: "you" -->
+        <div class="polaroid-frame -rotate-2 cursor-pointer group" onclick="openPhotoLightbox(1)">
+          <!-- Washi tape di atas polaroid -->
+          <div class="washi-tape"></div>
+          
+          <!-- Kontainer Foto Ber-rasio Persegi -->
+          <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-rose-100">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
+                 alt="Foto kamu" 
+                 onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80'"
+                 class="w-full h-full object-cover grayscale contrast-110 brightness-105 group-hover:scale-105 transition-transform duration-700">
+            <!-- Overlay gradasi hangat -->
+            <div class="absolute inset-0 bg-rose-500/10 mix-blend-color pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-pink-950/30 via-transparent to-transparent pointer-events-none"></div>
+          </div>
+
+          <!-- Caption Kaligrafi Manis -->
+          <div class="flex items-center justify-between mt-2.5 px-1">
+            <span class="font-script text-2xl sm:text-3xl text-rose-800 tracking-wide">you</span>
+            <span class="text-xs sm:text-sm filter drop-shadow">🎀</span>
+          </div>
+        </div>
+
+        <!-- FOTO 2: "are" -->
+        <div class="polaroid-frame rotate-2 cursor-pointer group" onclick="openPhotoLightbox(2)">
+          <div class="washi-tape"></div>
+          
+          <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-rose-100">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" 
+                 alt="Foto kecantikanmu" 
+                 onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'"
+                 class="w-full h-full object-cover grayscale contrast-110 brightness-105 group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-rose-500/10 mix-blend-color pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-pink-950/30 via-transparent to-transparent pointer-events-none"></div>
+          </div>
+
+          <div class="flex items-center justify-between mt-2.5 px-1">
+            <span class="font-script text-2xl sm:text-3xl text-rose-800 tracking-wide">are</span>
+            <span class="text-xs sm:text-sm filter drop-shadow">✨</span>
+          </div>
+        </div>
+
+        <!-- FOTO 3: "so" -->
+        <div class="polaroid-frame rotate-1 cursor-pointer group" onclick="openPhotoLightbox(3)">
+          <div class="washi-tape"></div>
+          
+          <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-rose-100">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" 
+                 alt="Foto senyumanmu" 
+                 onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80'"
+                 class="w-full h-full object-cover grayscale contrast-110 brightness-105 group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-rose-500/10 mix-blend-color pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-pink-950/30 via-transparent to-transparent pointer-events-none"></div>
+          </div>
+
+          <div class="flex items-center justify-between mt-2.5 px-1">
+            <span class="font-script text-2xl sm:text-3xl text-rose-800 tracking-wide">so</span>
+            <span class="text-xs sm:text-sm filter drop-shadow">🌸</span>
+          </div>
+        </div>
+
+        <!-- FOTO 4: "beautiful" -->
+        <div class="polaroid-frame -rotate-1 cursor-pointer group" onclick="openPhotoLightbox(4)">
+          <div class="washi-tape"></div>
+          
+          <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-rose-100">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" 
+                 alt="Foto anggunmu" 
+                 onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80'"
+                 class="w-full h-full object-cover grayscale contrast-110 brightness-105 group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-rose-500/10 mix-blend-color pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-pink-950/30 via-transparent to-transparent pointer-events-none"></div>
+          </div>
+
+          <div class="flex items-center justify-between mt-2.5 px-1">
+            <span class="font-script text-2xl sm:text-3xl text-rose-800 tracking-wide">beautiful</span>
+            <span class="text-xs sm:text-sm filter drop-shadow">💖</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 5: SURAT RAHASIA INTERAKTIF (A CUTE SECRET LOVE NOTE) -->
+    <section class="w-full my-10 text-center">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg mx-auto border-pink-200/90 shadow-lg">
+        <span class="text-3xl mb-2 inline-block animate-bounce">💌</span>
+        <h3 class="font-serif text-xl sm:text-2xl text-rose-900 font-semibold mb-2">Pesan Rahasia Kecil</h3>
+        <p class="text-xs text-rose-800/80 font-normal mb-5 leading-relaxed">
+          Ada sesuatu yang selalu ingin kusampaikan padamu setiap kali aku memikirkanmu...
+        </p>
+
+        <button onclick="toggleSecretNote(true)" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white text-xs font-semibold tracking-wider shadow-md hover:scale-105 active:scale-95 transition-all">
+          <span>Buka Pesan Rahasia</span>
+          <span>✨</span>
+        </button>
+      </div>
+    </section>
+
+
+    <!-- SECTION 6: PENUTUP PUITIS (YOU ARE LOVED BEYOND WORDS) -->
+    <section class="w-full my-12 text-center">
+      
+      <!-- Hiasan Mahkota Bunga -->
+      <div class="flex justify-center items-center gap-3 text-2xl mb-4">
+        <span>🌸</span>
+        <span class="text-3xl">🎀</span>
+        <span>🌸</span>
+      </div>
+
+      <p class="font-serif italic text-xs tracking-[0.25em] text-rose-600 uppercase font-semibold mb-2">
+        always & forever
+      </p>
+
+      <h2 class="font-serif text-3xl sm:text-5xl text-rose-900 font-semibold tracking-wide text-glow-pink mb-5">
+        You Are Loved<br />
+        <span class="italic text-rose-600 font-medium">Beyond Words</span>
+      </h2>
+
+      <p class="text-xs sm:text-sm text-rose-900/85 leading-relaxed font-normal max-w-lg mx-auto mb-8 px-4">
+        Ke mana pun langkah membawamu dan apa pun yang terjadi esok hari, ingatlah selalu bahwa kamu selalu dicintai setulus ini. Kamu layak mendapatkan seluruh kebahagiaan di alam semesta, semua bunga terindah di bumi, dan pelukan terhangat.
+      </p>
+
+      <!-- Tombol Kirim Balasan Cinta ke WhatsApp -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+        <a href="https://wa.me/?text=Terima%20kasih%20sudah%20bikin%20website%20romantis%20ini,%20aku%20suka%20banget!%20%F0%9F%92%96%E2%9C%A8" 
+           target="_blank" 
+           class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold tracking-wider shadow-lg hover:scale-105 active:scale-95 transition-all">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.072-1.026-.067-.282-.1-.645-.224-1.168-.452-2.222-.972-3.666-3.23-3.777-3.379-.112-.149-.907-1.206-.907-2.3 0-1.094.573-1.633.777-1.856.204-.224.446-.28.595-.28.149 0 .298.001.428.007.137.007.322-.052.503.383.187.449.638 1.558.694 1.671.056.112.093.243.019.392-.075.149-.112.242-.224.373-.112.13-.235.291-.336.392-.112.112-.228.234-.099.456.13.223.578.955 1.24 1.545.852.76 1.571.996 1.794 1.107.224.112.355.093.486-.056.13-.149.559-.652.708-.876.149-.224.298-.187.503-.112.204.075 1.298.613 1.521.725.223.112.372.168.428.261.056.093.056.541-.088.946z"/></svg>
+          <span>Kirim Pelukan ke WhatsApp</span>
+        </a>
+
+        <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 border border-pink-200 text-rose-800 text-xs font-semibold tracking-wider shadow-sm">
+          <span>forever & always</span>
+          <span class="text-rose-500">💖</span>
+        </div>
+      </div>
+
+      <p class="text-[11px] text-rose-600/70 font-medium tracking-wide">
+        crafted with eternal love & pink petals 🌸✨
+      </p>
+    </section>
+  </main>
+
+
+  <!-- ================= MODAL LIGHTBOX FOTO ROMANTIS ================= -->
+  <div id="photoLightbox" class="fixed inset-0 z-50 flex items-center justify-center bg-rose-950/70 backdrop-blur-md p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="glass-card rounded-3xl p-5 sm:p-7 max-w-sm w-full text-center relative border-2 border-pink-200 shadow-2xl transition-transform duration-300 scale-95" id="lightboxCard">
+      
+      <!-- Tombol Tutup -->
+      <button onclick="closePhotoLightbox()" class="absolute top-3.5 right-3.5 text-rose-600 hover:text-rose-900 w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-sm font-bold z-10">
+        ✕
+      </button>
+
+      <!-- Frame Gambar Besar -->
+      <div class="polaroid-frame p-2.5 sm:p-3 bg-white mb-4 shadow-lg">
+        <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-rose-50">
+          <img id="lightboxImg" src="" alt="Foto Terpilih" class="w-full h-full object-cover grayscale contrast-110 brightness-105">
+        </div>
+      </div>
+
+      <!-- Detail Keterangan Romantis -->
+      <span id="lightboxTag" class="font-script text-3xl text-rose-700 block mb-1">you</span>
+      <p id="lightboxNote" class="text-xs text-rose-900/85 leading-relaxed font-normal px-2">
+        Kecantikanmu yang selalu bikin aku jatuh cinta setiap hari tanpa jeda.
+      </p>
+
+      <div class="mt-4 pt-3 border-t border-rose-200 flex justify-center items-center gap-2 text-rose-500 text-xs">
+        <span>🌸</span>
+        <span class="font-serif italic text-rose-700">my favorite view in the world</span>
+        <span>🌸</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= MODAL PESAN RAHASIA (SECRET NOTE MODAL) ================= -->
+  <div id="secretNoteModal" class="fixed inset-0 z-50 flex items-center justify-center bg-rose-950/60 backdrop-blur-md p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full text-center relative border-2 border-pink-200 shadow-2xl">
+      
+      <button onclick="toggleSecretNote(false)" class="absolute top-4 right-4 text-rose-600 hover:text-rose-900 w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-sm font-bold">
+        ✕
+      </button>
+
+      <span class="text-4xl mb-3 inline-block">💌</span>
+      <h3 class="font-serif text-2xl text-rose-900 font-semibold mb-3">Untuk Bidadari Hatiku</h3>
+      
+      <div class="space-y-3 text-xs sm:text-sm text-rose-900/85 leading-relaxed text-left bg-white/70 p-4 rounded-2xl border border-pink-200/80 mb-5">
+        <p>
+          "Setiap kali duniaku terasa lelah, cukup mengingat senyummu maka semuanya kembali hangat dan tenang."
+        </p>
+        <p>
+          Terima kasih sudah lahir ke dunia ini, terima kasih sudah menjadi kamu apa adanya, dan terima kasih sudah memilih untuk terus melangkah bersamaku. 
+        </p>
+        <p class="font-script text-2xl text-rose-700 text-right mt-2">
+          — Aku selalu menyayangimu, kemarin, hari ini, dan selamanya.
+        </p>
+      </div>
+
+      <button onclick="toggleSecretNote(false)" class="px-6 py-2.5 rounded-full bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold tracking-wider shadow-md active:scale-95 transition-all">
+        Tutup dengan Pelukan 💕
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ================= FLOATING MUSIC PLAYER (SAMPAI JADI DEBU - BANDA NEIRA) ================= -->
+  <div id="musicPlayerWidget" class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 transition-all duration-500">
+    
+    <!-- Kartu Pemutar Musik Pink Glassmorphism Manis -->
+    <div id="playerCard" class="glass-card rounded-2xl p-3 sm:p-4 w-[280px] sm:w-80 shadow-2xl border border-pink-300/80 flex flex-col gap-2">
+      
+      <!-- Baris Atas: Album Art, Info Lagu & Tombol Minimize -->
+      <div class="flex items-center gap-3">
+        <!-- Thumbnail Album Art -->
+        <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden shrink-0 border border-pink-300 shadow-sm">
+          <img id="albumArtImg" 
+               src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=150&q=80" 
+               alt="Sampai Jadi Debu Cover" 
+               class="w-full h-full object-cover grayscale contrast-110 brightness-105" />
+          <div class="absolute inset-0 bg-rose-500/10 mix-blend-color"></div>
+        </div>
+
+        <!-- Judul Lagu & Artis -->
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-1.5">
+            <h4 class="font-serif text-sm font-semibold text-rose-900 truncate tracking-wide">Sampai Jadi Debu</h4>
+            <span class="text-[10px]">🌸</span>
+          </div>
+          <p class="text-[10px] text-rose-600 truncate tracking-wider uppercase font-semibold">BANDA NEIRA</p>
+        </div>
+
+        <!-- Tombol Perkecil / Sembunyikan Player -->
+        <button onclick="toggleMinimizePlayer()" class="text-rose-500 hover:text-rose-700 w-7 h-7 rounded-full bg-pink-100/70 flex items-center justify-center text-xs transition-colors shrink-0" title="Sembunyikan">
+          ✕
+        </button>
+      </div>
+
+      <!-- Slider Garis Waktu Durasi -->
+      <div class="flex items-center gap-2">
+        <span id="currentTimeDisplay" class="text-[10px] text-rose-700 font-mono font-medium">0:00</span>
+        <input type="range" id="progressBar" min="0" max="100" value="0" class="w-full h-1 bg-pink-200 rounded-lg appearance-none cursor-pointer">
+        <span id="durationTimeDisplay" class="text-[10px] text-rose-700 font-mono font-medium">3:30</span>
+      </div>
+
+      <!-- Tombol Kontrol -->
+      <div class="flex items-center justify-center gap-5 pt-0.5">
+        <!-- Prev -->
+        <button onclick="restartMusic()" class="text-rose-600 hover:text-rose-900 transition-colors p-2" title="Ulang">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+
+        <!-- Play/Pause Utama -->
+        <button id="playPauseBtn" onclick="togglePlayMusic()" class="w-10 h-10 rounded-full bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 border border-pink-200 shadow-md flex items-center justify-center text-white transition-transform active:scale-95" title="Putar/Jeda">
+          <svg id="playIcon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="pauseIcon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+
+        <!-- Next / Replay -->
+        <button onclick="restartMusic()" class="text-rose-600 hover:text-rose-900 transition-colors p-2" title="Ulang">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tombol Mengambang Kecil Ketika Diminimize -->
+    <button id="minimizedMusicBtn" onclick="toggleMinimizePlayer()" class="hidden w-12 h-12 rounded-full bg-white/95 border-2 border-pink-300 text-rose-600 flex items-center justify-center shadow-xl hover:scale-110 transition-all active:scale-95" title="Buka Pemutar Musik">
+      <span class="animate-pulse text-xl">🎵</span>
+    </button>
+  </div>
+
+
+  <!-- ================= MODAL QR CODE WHATSAPP ================= -->
+  <div id="qrModal" class="fixed inset-0 z-50 flex items-center justify-center bg-rose-950/40 backdrop-blur-md p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center relative border-2 border-pink-300 shadow-2xl">
+      
+      <!-- Tombol Tutup -->
+      <button onclick="toggleQRModal(false)" class="absolute top-4 right-4 text-rose-600 hover:text-rose-800 w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-sm font-bold">
+        ✕
+      </button>
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 border border-pink-200 text-rose-700 text-xs font-serif font-semibold mb-4">
+        <span>💌</span> Special Surprise
+      </div>
+
+      <!-- Ilustrasi QR Code Berbentuk Hati -->
+      <div class="relative mx-auto w-48 h-48 sm:w-52 sm:h-52 bg-white rounded-2xl p-4 shadow-md flex flex-col items-center justify-center border-2 border-pink-200">
+        <svg viewBox="0 0 100 100" class="w-full h-full text-rose-500 fill-current">
+          <path d="M50 85s-30-18-38-34c-7-14 3-29 17-29 9 0 16 6 21 12 5-6 12-12 21-12 14 0 24 15 17 29-8 16-38 34-38 34z" fill="#ffe4ec" />
+          <rect x="25" y="25" width="10" height="10" fill="#e11d48" rx="2"/>
+          <rect x="27" y="27" width="6" height="6" fill="#fff" rx="1"/>
+          <rect x="65" y="25" width="10" height="10" fill="#e11d48" rx="2"/>
+          <rect x="67" y="27" width="6" height="6" fill="#fff" rx="1"/>
+          <rect x="42" y="32" width="5" height="5" fill="#f43f5e"/>
+          <rect x="53" y="32" width="5" height="5" fill="#f43f5e"/>
+          <rect x="35" y="45" width="6" height="6" fill="#be123c"/>
+          <rect x="45" y="42" width="10" height="10" fill="#e11d48" rx="2"/>
+          <rect x="59" y="45" width="6" height="6" fill="#be123c"/>
+          <rect x="40" y="58" width="8" height="8" fill="#e11d48"/>
+          <rect x="52" y="58" width="8" height="8" fill="#be123c"/>
+          <rect x="46" y="70" width="8" height="8" fill="#e11d48"/>
+        </svg>
+
+        <div class="absolute -bottom-3 -right-3 text-3xl filter drop-shadow">
+          🐹💐
+        </div>
+      </div>
+
+      <p class="font-serif italic text-lg text-rose-900 mt-5 font-semibold">something for you... 💌</p>
+      <p class="text-xs text-rose-700/80 mt-1 font-normal">Kirimkan kejutan ini untuk orang yang paling kamu sayangi.</p>
+    </div>
+  </div>
+
+
+  <!-- ================= LOGIKA JAVASCRIPT LENGKAP ================= -->
+  <script>
+    /* ----------------------------------------------------
+       1. DATA FOTO DAN PESAN LIGHTBOX ROMANTIS
+    ---------------------------------------------------- */
+    const photoData = {
+      1: {
+        src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+        tag: "you",
+        note: "Kamu adalah alasan kenapa setiap hari selalu terasa jauh lebih indah dan penuh warna."
+      },
+      2: {
+        src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        tag: "are",
+        note: "Kebaikan dan kelembutan hatimu selalu membuatku merasa beruntung memilikimu."
+      },
+      3: {
+        src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+        tag: "so",
+        note: "Tawamu yang manis adalah musik paling merdu yang pernah kudengar seumur hidupku."
+      },
+      4: {
+        src: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+        tag: "beautiful",
+        note: "Cantik di luar, anggun di dalam. Kamu sempurna persis seperti apa adanya dirimu."
+      }
+    };
+
+    function openPhotoLightbox(id) {
+      const data = photoData[id];
+      if (!data) return;
+
+      const modal = document.getElementById('photoLightbox');
+      const card = document.getElementById('lightboxCard');
+      const img = document.getElementById('lightboxImg');
+      const tag = document.getElementById('lightboxTag');
+      const note = document.getElementById('lightboxNote');
+
+      img.src = data.src;
+      tag.textContent = data.tag;
+      note.textContent = `"${data.note}"`;
+
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+
+      // Ledakan partikel kecil saat foto dibuka
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          createTapHeart(window.innerWidth / 2 + (Math.random() - 0.5) * 160, window.innerHeight / 2 + (Math.random() - 0.5) * 160);
+        }, i * 60);
+      }
+    }
+
+    function closePhotoLightbox() {
+      const modal = document.getElementById('photoLightbox');
+      const card = document.getElementById('lightboxCard');
+      modal.classList.remove('opacity-100');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+    }
+
+    function toggleSecretNote(show) {
+      const modal = document.getElementById('secretNoteModal');
+      if (show) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+      } else {
+        modal.classList.remove('opacity-100');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+
+    /* ----------------------------------------------------
+       2. SISTEM AUDIO DENGAN NADA PIANO MELODIS
+       Lagu: "Sampai Jadi Debu - Banda Neira"
+    ---------------------------------------------------- */
+    let isPlaying = false;
+    let audioCurrentTime = 0;
+    const audioDuration = 210; // 3 menit 30 detik
+    let audioInterval = null;
+    let audioCtx = null;
+
+    const melodyNotes = [
+      { f: 392.00, d: 0.6 }, // G4
+      { f: 440.00, d: 0.6 }, // A4
+      { f: 493.88, d: 0.8 }, // B4
+      { f: 587.33, d: 1.0 }, // D5
+      { f: 523.25, d: 0.8 }, // C5
+      { f: 493.88, d: 0.8 }, // B4
+      { f: 440.00, d: 1.2 }, // A4
+      { f: 329.63, d: 0.8 }, // E4
+      { f: 392.00, d: 1.2 }  // G4
+    ];
+    let noteIndex = 0;
+
+    function playGentlePianoTone() {
+      if (!isPlaying) return;
+      try {
+        if (!audioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const note = melodyNotes[noteIndex % melodyNotes.length];
+        noteIndex++;
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(note.f, audioCtx.currentTime);
+
+        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + note.d);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + note.d);
+
+        if (isPlaying) {
+          setTimeout(playGentlePianoTone, note.d * 900);
+        }
+      } catch (e) {
+        console.warn("Audio Context:", e);
+      }
+    }
+
+    function togglePlayMusic() {
+      if (isPlaying) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    }
+
+    function playMusic() {
+      isPlaying = true;
+      document.getElementById('playIcon').classList.add('hidden');
+      document.getElementById('pauseIcon').classList.remove('hidden');
+
+      playGentlePianoTone();
+
+      if (!audioInterval) {
+        audioInterval = setInterval(() => {
+          if (audioCurrentTime < audioDuration) {
+            audioCurrentTime++;
+            updateProgressBar();
+          } else {
+            audioCurrentTime = 0;
+          }
+        }, 1000);
+      }
+    }
+
+    function pauseMusic() {
+      isPlaying = false;
+      document.getElementById('playIcon').classList.remove('hidden');
+      document.getElementById('pauseIcon').classList.add('hidden');
+      if (audioInterval) {
+        clearInterval(audioInterval);
+        audioInterval = null;
+      }
+    }
+
+    function restartMusic() {
+      audioCurrentTime = 0;
+      noteIndex = 0;
+      updateProgressBar();
+      if (!isPlaying) playMusic();
+    }
+
+    function updateProgressBar() {
+      const progressBar = document.getElementById('progressBar');
+      const currentTimeDisp = document.getElementById('currentTimeDisplay');
+      
+      const pct = (audioCurrentTime / audioDuration) * 100;
+      progressBar.value = pct;
+
+      const mins = Math.floor(audioCurrentTime / 60);
+      const secs = Math.floor(audioCurrentTime % 60);
+      currentTimeDisp.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    document.getElementById('progressBar').addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value);
+      audioCurrentTime = (val / 100) * audioDuration;
+      updateProgressBar();
+    });
+
+    let isPlayerMinimized = false;
+    function toggleMinimizePlayer() {
+      isPlayerMinimized = !isPlayerMinimized;
+      const card = document.getElementById('playerCard');
+      const minBtn = document.getElementById('minimizedMusicBtn');
+      if (isPlayerMinimized) {
+        card.classList.add('hidden');
+        minBtn.classList.remove('hidden');
+      } else {
+        card.classList.remove('hidden');
+        minBtn.classList.add('hidden');
+      }
+    }
+
+
+    /* ----------------------------------------------------
+       3. MEMBUKA KOTAK KADO DENGAN BURST BUNGA & HATI
+    ---------------------------------------------------- */
+    function openGift() {
+      const lid = document.getElementById('giftLid');
+      const burstZone = document.getElementById('flowerBurstZone');
+      const giftScreen = document.getElementById('giftScreen');
+      const mainContent = document.getElementById('mainContent');
+
+      lid.style.transform = 'translateY(-45px) rotate(-18deg)';
+
+      const sweetEmojis = ['🌸', '💖', '🎀', '🌷', '✨', '💐', '💕', '🌹'];
+      for (let i = 0; i < 28; i++) {
+        const span = document.createElement('span');
+        span.textContent = sweetEmojis[Math.floor(Math.random() * sweetEmojis.length)];
+        span.className = 'absolute text-2xl sm:text-3xl transition-all duration-1000';
+        burstZone.appendChild(span);
+
+        const angle = (Math.PI * 2 / 28) * i;
+        const dist = 100 + Math.random() * 120;
+        const tx = Math.cos(angle) * dist;
+        const ty = Math.sin(angle) * dist - 35;
+
+        setTimeout(() => {
+          span.style.transform = `translate(${tx}px, ${ty}px) scale(${1.2 + Math.random() * 0.7}) rotate(${Math.random() * 360}deg)`;
+          span.style.opacity = '0';
+        }, 20);
+      }
+
+      playMusic();
+
+      setTimeout(() => {
+        giftScreen.style.opacity = '0';
+        giftScreen.style.pointerEvents = 'none';
+
+        mainContent.classList.remove('pointer-events-none');
+        mainContent.style.opacity = '1';
+      }, 700);
+    }
+
+
+    /* ----------------------------------------------------
+       4. INTERAKSI DETAIL TAMAN BUNGA
+    ---------------------------------------------------- */
+    function showFlowerMeaning(name, desc) {
+      const box = document.getElementById('flowerMeaningBox');
+      const nameEl = document.getElementById('flowerName');
+      const descEl = document.getElementById('flowerDesc');
+
+      nameEl.textContent = name;
+      descEl.textContent = `"${desc}"`;
+      box.classList.remove('hidden');
+
+      box.classList.add('scale-105');
+      setTimeout(() => box.classList.remove('scale-105'), 200);
+    }
+
+
+    /* ----------------------------------------------------
+       5. MODAL POP-UP QR CODE WHATSAPP
+    ---------------------------------------------------- */
+    function toggleQRModal(show) {
+      const modal = document.getElementById('qrModal');
+      if (show) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+      } else {
+        modal.classList.remove('opacity-100');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+
+    /* ----------------------------------------------------
+       6. SIMULASI KELOPAK MAWAR PINK & CANVAS
+    ---------------------------------------------------- */
+    const canvas = document.getElementById('petalCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    class RomanticPetal {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * -height;
+        this.size = 9 + Math.random() * 11;
+        this.speedY = 1.0 + Math.random() * 1.4;
+        this.speedX = Math.sin(Math.random()) * 0.8;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = (Math.random() - 0.5) * 2;
+        this.opacity = 0.45 + Math.random() * 0.45;
+        this.swing = 0;
+        this.swingSpeed = 0.02 + Math.random() * 0.025;
+        
+        const pinkColors = [
+          'rgba(244, 63, 94,',
+          'rgba(251, 113, 133,',
+          'rgba(244, 114, 182,',
+          'rgba(253, 164, 175,',
+          'rgba(244, 165, 174,'
+        ];
+        this.baseColor = pinkColors[Math.floor(Math.random() * pinkColors.length)];
+      }
+      update() {
+        this.swing += this.swingSpeed;
+        this.x += this.speedX + Math.sin(this.swing) * 0.8;
+        this.y += this.speedY;
+        this.rotation += this.rotationSpeed;
+
+        if (this.y > height + 25 || this.x < -25 || this.x > width + 25) {
+          this.reset();
+          this.y = -10;
+        }
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.rotation * Math.PI) / 180);
+        ctx.fillStyle = `${this.baseColor} ${this.opacity})`;
+
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(-this.size / 2, -this.size / 2, -this.size / 2, this.size / 2, 0, this.size);
+        ctx.bezierCurveTo(this.size / 2, this.size / 2, this.size / 2, -this.size / 2, 0, 0);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    const petals = Array.from({ length: 38 }, () => new RomanticPetal());
+
+    function animatePetals() {
+      ctx.clearRect(0, 0, width, height);
+      for (let petal of petals) {
+        petal.update();
+        petal.draw();
+      }
+      requestAnimationFrame(animatePetals);
+    }
+    animatePetals();
+
+
+    /* ----------------------------------------------------
+       7. TABURAN HATI SAAT KLIK / TAP DI LAYAR
+    ---------------------------------------------------- */
+    const tapHearts = ['💖', '💕', '🌸', '✨', '🎀', '🌷'];
+    function createTapHeart(x, y) {
+      const heart = document.createElement('span');
+      heart.className = 'tap-heart-particle select-none';
+      heart.textContent = tapHearts[Math.floor(Math.random() * tapHearts.length)];
+      heart.style.left = `${x}px`;
+      heart.style.top = `${y}px`;
+      heart.style.setProperty('--tx', `${(Math.random() - 0.5) * 60}px`);
+      heart.style.setProperty('--rot', `${(Math.random() - 0.5) * 45}deg`);
+      heart.style.fontSize = `${16 + Math.random() * 14}px`;
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1100);
+    }
+
+    window.addEventListener('click', (e) => {
+      createTapHeart(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        createTapHeart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
