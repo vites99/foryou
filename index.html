@@ -466,7 +466,7 @@
       </div>
     </section>
 
-    <!-- SECTION 4: FOTO ESTETIK POLAROID SCRAPBOOK (MENGGUNAKAN img1.jpg, dst.) -->
+    <!-- SECTION 4: FOTO ESTETIK POLAROID SCRAPBOOK -->
     <section class="w-full my-12">
       <div class="text-center mb-9">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/70 border border-pink-200 text-rose-600 text-xs font-serif italic tracking-[0.2em] uppercase mb-2">
@@ -663,8 +663,14 @@
     </div>
   </div>
 
-  <!-- ================= FLOATING MUSIC PLAYER ================= -->
+  <!-- ================= FLOATING MUSIC PLAYER (W2E - LOVE) ================= -->
   <div id="musicPlayerWidget" class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 transition-all duration-500">
+    
+    <!-- Elemen Audio HTML5 (Ganti 'song.mp3' dengan nama file lagu W2E Love Anda) -->
+    <audio id="bgMusic" loop preload="auto">
+      <source src="song.mp3" type="audio/mp3">
+    </audio>
+
     <div id="playerCard" class="glass-card rounded-2xl p-3 sm:p-4 w-[280px] sm:w-80 shadow-2xl border border-pink-300/80 flex flex-col gap-2">
       <div class="flex items-center gap-3">
         <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden shrink-0 border border-pink-300 shadow-sm">
@@ -677,10 +683,10 @@
 
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-1.5">
-            <h4 class="font-serif text-sm font-semibold text-rose-900 truncate tracking-wide">Sampai Jadi Debu</h4>
+            <h4 class="font-serif text-sm font-semibold text-rose-900 truncate tracking-wide">love.</h4>
             <span class="text-[10px]">🌸</span>
           </div>
-          <p class="text-[10px] text-rose-600 truncate tracking-wider uppercase font-semibold">BANDA NEIRA</p>
+          <p class="text-[10px] text-rose-600 truncate tracking-wider uppercase font-semibold">WAVE TO EARTH</p>
         </div>
 
         <button onclick="toggleMinimizePlayer()" class="text-rose-500 hover:text-rose-700 w-7 h-7 rounded-full bg-pink-100/70 flex items-center justify-center text-xs transition-colors shrink-0" title="Sembunyikan">
@@ -699,7 +705,7 @@
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
         </button>
 
-        <button id="playPauseBtn" onclick="togglePlayMusic()" class="w-10 h-10 rounded-full bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 border border-pink-200 shadow-md flex items-center justify-center text-white transition-transform active:scale-95" title="Putar/Jeda">
+        <button id="playPauseBtn" onclick="togglePlayMusicReal()" class="w-10 h-10 rounded-full bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 border border-pink-200 shadow-md flex items-center justify-center text-white transition-transform active:scale-95" title="Putar/Jeda">
           <svg id="playIcon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           <svg id="pauseIcon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
         </button>
@@ -717,7 +723,7 @@
 
   <!-- ================= JAVASCRIPT ================= -->
   <script>
-    /* Data Foto untuk Lightbox (Menggunakan file lokal img1.jpg, img2.jpg, img3.jpg, img4.jpg) */
+    /* Data Foto untuk Lightbox */
     const photoData = {
       1: {
         src: "img1.jpg",
@@ -787,125 +793,59 @@
       }
     }
 
-    /* Sistem Audio Piano */
+    /* Sistem Audio Asli HTML5 (Wave to Earth - Love) */
+    const bgMusic = document.getElementById('bgMusic');
     let isPlaying = false;
-    let audioCurrentTime = 0;
-    const audioDuration = 210;
-    let audioInterval = null;
-    let audioCtx = null;
 
-    const melodyNotes = [
-      { f: 392.00, d: 0.6 },
-      { f: 440.00, d: 0.6 },
-      { f: 493.88, d: 0.8 },
-      { f: 587.33, d: 1.0 },
-      { f: 523.25, d: 0.8 },
-      { f: 493.88, d: 0.8 },
-      { f: 440.00, d: 1.2 },
-      { f: 329.63, d: 0.8 },
-      { f: 392.00, d: 1.2 }
-    ];
-    let noteIndex = 0;
-
-    function playGentlePianoTone() {
-      if (!isPlaying) return;
-      try {
-        if (!audioCtx) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          audioCtx = new AudioContext();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-
-        const note = melodyNotes[noteIndex % melodyNotes.length];
-        noteIndex++;
-
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(note.f, audioCtx.currentTime);
-
-        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.08);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + note.d);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + note.d);
-
-        if (isPlaying) {
-          setTimeout(playGentlePianoTone, note.d * 900);
-        }
-      } catch (e) {
-        console.warn("Audio Context:", e);
-      }
-    }
-
-    function togglePlayMusic() {
-      if (isPlaying) {
-        pauseMusic();
+    function togglePlayMusicReal() {
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          isPlaying = true;
+          document.getElementById('playIcon').classList.add('hidden');
+          document.getElementById('pauseIcon').classList.remove('hidden');
+        }).catch(e => console.log("Gagal memutar audio:", e));
       } else {
-        playMusic();
+        bgMusic.pause();
+        isPlaying = false;
+        document.getElementById('playIcon').classList.remove('hidden');
+        document.getElementById('pauseIcon').classList.add('hidden');
       }
     }
 
-    function playMusic() {
-      isPlaying = true;
-      document.getElementById('playIcon').classList.add('hidden');
-      document.getElementById('pauseIcon').classList.remove('hidden');
+    if (bgMusic) {
+      bgMusic.addEventListener('timeupdate', () => {
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeDisp = document.getElementById('currentTimeDisplay');
+        const durationTimeDisp = document.getElementById('durationTimeDisplay');
 
-      playGentlePianoTone();
+        if (!isNaN(bgMusic.duration)) {
+          const pct = (bgMusic.currentTime / bgMusic.duration) * 100;
+          progressBar.value = pct;
 
-      if (!audioInterval) {
-        audioInterval = setInterval(() => {
-          if (audioCurrentTime < audioDuration) {
-            audioCurrentTime++;
-            updateProgressBar();
-          } else {
-            audioCurrentTime = 0;
-          }
-        }, 1000);
-      }
-    }
+          const curMins = Math.floor(bgMusic.currentTime / 60);
+          const curSecs = Math.floor(bgMusic.currentTime % 60);
+          currentTimeDisp.textContent = `${curMins}:${curSecs < 10 ? '0' : ''}${curSecs}`;
 
-    function pauseMusic() {
-      isPlaying = false;
-      document.getElementById('playIcon').classList.remove('hidden');
-      document.getElementById('pauseIcon').classList.add('hidden');
-      if (audioInterval) {
-        clearInterval(audioInterval);
-        audioInterval = null;
-      }
+          const durMins = Math.floor(bgMusic.duration / 60);
+          const durSecs = Math.floor(bgMusic.duration % 60);
+          durationTimeDisp.textContent = `${durMins}:${durSecs < 10 ? '0' : ''}${durSecs}`;
+        }
+      });
+
+      document.getElementById('progressBar').addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value);
+        if (!isNaN(bgMusic.duration)) {
+          bgMusic.currentTime = (val / 100) * bgMusic.duration;
+        }
+      });
     }
 
     function restartMusic() {
-      audioCurrentTime = 0;
-      noteIndex = 0;
-      updateProgressBar();
-      if (!isPlaying) playMusic();
+      if (bgMusic) {
+        bgMusic.currentTime = 0;
+        bgMusic.play();
+      }
     }
-
-    function updateProgressBar() {
-      const progressBar = document.getElementById('progressBar');
-      const currentTimeDisp = document.getElementById('currentTimeDisplay');
-      
-      const pct = (audioCurrentTime / audioDuration) * 100;
-      progressBar.value = pct;
-
-      const mins = Math.floor(audioCurrentTime / 60);
-      const secs = Math.floor(audioCurrentTime % 60);
-      currentTimeDisp.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-    }
-
-    document.getElementById('progressBar').addEventListener('input', (e) => {
-      const val = parseFloat(e.target.value);
-      audioCurrentTime = (val / 100) * audioDuration;
-      updateProgressBar();
-    });
 
     let isPlayerMinimized = false;
     function toggleMinimizePlayer() {
@@ -921,7 +861,7 @@
       }
     }
 
-    /* Buka Kotak Kado */
+    /* Buka Kotak Kado & Putar Musik W2E Love */
     function openGift() {
       const lid = document.getElementById('giftLid');
       const burstZone = document.getElementById('flowerBurstZone');
@@ -948,7 +888,13 @@
         }, 20);
       }
 
-      playMusic();
+      if (bgMusic) {
+        bgMusic.play().then(() => {
+          isPlaying = true;
+          document.getElementById('playIcon').classList.add('hidden');
+          document.getElementById('pauseIcon').classList.remove('hidden');
+        }).catch(err => console.log("Autoplay dicegah browser:", err));
+      }
 
       setTimeout(() => {
         giftScreen.style.opacity = '0';
@@ -1053,7 +999,7 @@
     function createTapHeart(x, y) {
       const heart = document.createElement('span');
       heart.className = 'tap-heart-particle select-none';
-      heart.textContent = tapHearts[Math.floor(Math.random() * tapHearts.length)];
+      heart.textContent = taphearts[Math.floor(Math.random() * tapHearts.length)];
       heart.style.left = `${x}px`;
       heart.style.top = `${y}px`;
       heart.style.setProperty('--tx', `${(Math.random() - 0.5) * 60}px`);
